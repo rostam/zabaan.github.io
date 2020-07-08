@@ -22,7 +22,7 @@
       <!-- <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p> -->
       <p><button type="button" name="previous" class="btn btn-success" onclick="nextSentence()">Previous</button>
         <button type="button" name="next" class="btn btn-success" onclick="previousSentence()">Next</button>
-        <button type="button" name="keep" class="btn btn-success" onclick="keepSentence()">Keep</button>
+        <button type="button" name="tag" class="btn btn-success" onclick="tagSentence()">Tag</button>
     </div>
     <!-- <div class="col-sm-4">
       <h3>Column 2</h3>
@@ -37,7 +37,10 @@
   </div>
 </div>
 <script type="text/javascript">
-  var cnt = 0;
+  var zabancntstr = 'zabancnt';
+  var cnt;
+  if(localStorage[zabancntstr]) cnt = localStorage.getItem(zabancntstr);
+  else cnt = 0;
   var mydata;
   $.get('data.csv', function(data) {
     mydata = data.split('\n');
@@ -48,14 +51,17 @@
   function nextSentence() {
     cnt++;
     $('#sentence').innerHTML = mydata[cnt];
+    localStorage.setItem(zabancntstr, cnt);
   }
 
   function previousSentence() {
+    if(cnt <= 0) return;
     cnt--;
     $('#sentence').innerHTML = mydata[cnt];
+    localStorage.setItem(zabancntstr, cnt);
   }
 
-  function keepSentence() {
+  function tagSentence() {
 
   }
 </script>
