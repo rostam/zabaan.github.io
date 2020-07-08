@@ -20,8 +20,8 @@
       <h3>Sentence</h3>
       <p id="sentence">Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
       <!-- <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p> -->
-      <p><button type="button" name="previous" class="btn btn-success" onclick="nextSentence()">Previous</button>
-        <button type="button" name="next" class="btn btn-success" onclick="previousSentence()">Next</button>
+      <p><button type="button" name="previous" class="btn btn-success" onclick="previousSentence()">Previous</button>
+        <button type="button" name="next" class="btn btn-success" onclick="nextSentence()">Next</button>
         <button type="button" name="tag" class="btn btn-success" onclick="tagSentence()">Tag</button>
     </div>
     <!-- <div class="col-sm-4">
@@ -43,7 +43,8 @@
   else cnt = ;
   var mydata;
   $.get('data.csv', function(data) {
-    mydata = data.split('\n');
+    tmpdata = data.split('\n');
+    for(var td : tmpdata) mydata.push(tmpdata.split('\t')[1]);
     $('#sentence').text(mydata[cnt]);
     cnt++;
   }, 'text');
