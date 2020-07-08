@@ -23,10 +23,11 @@
   <div class="row">
     <div class="col-sm-2">
       <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select a language
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="drop">Language:
           <span class="caret"></span></button>
         <ul class="dropdown-menu">
-          <li><a href="#">German (Austrian)</a></li>
+          <li><a href="#">German_Austrian</a></li>
+          <li><a href="#">German_Germany</a></li>
           <li><a href="#">Persian</a></li>
         </ul>
       </div>
@@ -54,35 +55,50 @@
   </div>
 </div>
 <script type="text/javascript">
-  var zabancntstr = 'zabancnt';
-  var cnt;
+
+this.zabancntstr = 'zabancnt';
+this.mydata = [];
+var cnt;
+function load_corpus(lang) {
+
+
   if(localStorage[zabancntstr]) cnt = localStorage.getItem(zabancntstr);
   else cnt = 1;
-  this.mydata = [];
-  $.get('data.csv', function(data) {
+  $.get('data/German_Germany.csv', function(data) {
     tmpdata = data.split('\n');
     tmpdata.forEach(function(t){mydata.push(t.split('\t')[1]);});
     $('#sentence').text(mydata[cnt]);
     cnt++;
   }, 'text');
+}
 
-  function nextSentence() {
-    console.log('next');
-    cnt++;
-    $('#sentence').text(mydata[cnt]);
-    localStorage.setItem(zabancntstr, cnt);
-  }
+function nextSentence() {
+  console.log('next');
+  cnt++;
+  $('#sentence').text(mydata[cnt]);
+  localStorage.setItem(zabancntstr, cnt);
+}
 
-  function previousSentence() {
-    if(cnt <= 1) return;
-    cnt--;
-    $('#sentence').text(mydata[cnt]);
-    localStorage.setItem(zabancntstr, cnt);
-  }
+function previousSentence() {
+  if(cnt <= 1) return;
+  cnt--;
+  $('#sentence').text(mydata[cnt]);
+  localStorage.setItem(zabancntstr, cnt);
+}
 
-  function tagSentence() {
+function tagSentence() {
 
-  }
+}
+
+$("#drop").change(function () {
+alert("salam");
+       var end = this.value;
+
+       var firstDropVal = $('#pick').val();
+   });
+
+
+load_corpus("German_Germany");
 </script>
 </body>
 </html>
