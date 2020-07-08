@@ -40,19 +40,19 @@
   var cnt = 0;
   var mydata;
   $.get('data.csv', function(data) {
-    mydata = data;
-    $('#sentence').innerHTML = data[cnt];
+    mydata = data.split('\n');
+    $('#sentence').innerHTML = mydata[cnt];
     cnt++;
   }, 'text');
 
   function nextSentence() {
     cnt++;
-    $('#sentence').innerHTML = data[cnt];
+    $('#sentence').innerHTML = mydata[cnt];
   }
 
   function previousSentence() {
     cnt--;
-    $('#sentence').innerHTML = data[cnt];
+    $('#sentence').innerHTML = mydata[cnt];
   }
 
   function keepSentence() {
