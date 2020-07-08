@@ -44,20 +44,20 @@
   var mydata;
   $.get('data.csv', function(data) {
     mydata = data.split('\n');
-    $('#sentence').innerHTML = mydata[cnt];
+    $('#sentence').text(mydata[cnt]);
     cnt++;
   }, 'text');
 
   function nextSentence() {
     cnt++;
-    $('#sentence').innerHTML = mydata[cnt];
+    $('#sentence').text(mydata[cnt]);
     localStorage.setItem(zabancntstr, cnt);
   }
 
   function previousSentence() {
     if(cnt <= 0) return;
     cnt--;
-    $('#sentence').innerHTML = mydata[cnt];
+    $('#sentence').text(mydata[cnt]);
     localStorage.setItem(zabancntstr, cnt);
   }
 
