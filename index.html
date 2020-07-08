@@ -44,7 +44,7 @@
   var mydata;
   $.get('data.csv', function(data) {
     tmpdata = data.split('\n');
-    for(var td : tmpdata) mydata.push(tmpdata.split('\t')[1]);
+    tmpdata.forEach(function(t){mydata.push(t.split('\t')[1]);});
     $('#sentence').text(mydata[cnt]);
     cnt++;
   }, 'text');
