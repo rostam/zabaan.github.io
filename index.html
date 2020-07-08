@@ -23,13 +23,11 @@
   <div class="row">
     <div class="col-sm-2">
       <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="drop">Language:
-          <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a href="#">German_Austrian</a></li>
-          <li><a href="#">German_Germany</a></li>
-          <li><a href="#">Persian</a></li>
-        </ul>
+        <select onchange="drop()" id="langselect">
+          <option><a href="#">German_Austrian</a></option>
+          <option><a href="#">German_Germany</a></option>
+          <option><a href="#">Persian</a></option>
+        </select>
       </div>
     </div>
 
@@ -60,29 +58,28 @@ this.zabancntstr = 'zabancnt';
 this.mydata = [];
 var cnt;
 function load_corpus(lang) {
-
-
+  this.mydata = [];
   if(localStorage[zabancntstr]) cnt = localStorage.getItem(zabancntstr);
   else cnt = 1;
-  $.get('data/German_Germany.csv', function(data) {
+  $.get('data/' + lang, function(data) {
     tmpdata = data.split('\n');
-    tmpdata.forEach(function(t){mydata.push(t.split('\t')[1]);});
+    tmpdata.forEach(function(t){this.mydata.push(t.split('\t')[1]);});
+    console.log(this.mydata);
     $('#sentence').text(mydata[cnt]);
     cnt++;
   }, 'text');
 }
 
 function nextSentence() {
-  console.log('next');
   cnt++;
-  $('#sentence').text(mydata[cnt]);
+  $('#sentence').text(this.mydata[cnt]);
   localStorage.setItem(zabancntstr, cnt);
 }
 
 function previousSentence() {
   if(cnt <= 1) return;
   cnt--;
-  $('#sentence').text(mydata[cnt]);
+  $('#sentence').text(this.mydata[cnt]);
   localStorage.setItem(zabancntstr, cnt);
 }
 
@@ -90,15 +87,13 @@ function tagSentence() {
 
 }
 
-$("#drop").change(function () {
-alert("salam");
-       var end = this.value;
-
-       var firstDropVal = $('#pick').val();
-   });
+function drop() {
+  text = $( "#langselect option:selected" ).text();
+  load_corpus(text+".csv");
+}
 
 
-load_corpus("German_Germany");
+load_corpus("German_Germany.csv");
 </script>
 </body>
 </html>
