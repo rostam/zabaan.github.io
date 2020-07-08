@@ -41,7 +41,7 @@
   var cnt;
   if(localStorage[zabancntstr]) cnt = localStorage.getItem(zabancntstr);
   else cnt = 1;
-  var mydata;
+  this.mydata = [];
   $.get('data.csv', function(data) {
     tmpdata = data.split('\n');
     tmpdata.forEach(function(t){mydata.push(t.split('\t')[1]);});
