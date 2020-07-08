@@ -56,15 +56,18 @@
 
 this.zabancntstr = 'zabancnt';
 this.mydata = [];
+this.lang = "";
 var cnt;
 function load_corpus(lang) {
+  this.lang = lang;
+  $("#sentence").css("direction","ltr")
+  if(lang == "Persian") $("#sentence").css("direction","rtl")
   this.mydata = [];
-  if(localStorage[zabancntstr]) cnt = localStorage.getItem(zabancntstr);
+  if(localStorage[lang+zabancntstr]) cnt = localStorage.getItem(lang+zabancntstr);
   else cnt = 1;
-  $.get('data/' + lang, function(data) {
+  $.get('data/' + lang + ".csv", function(data) {
     tmpdata = data.split('\n');
     tmpdata.forEach(function(t){this.mydata.push(t.split('\t')[1]);});
-    console.log(this.mydata);
     $('#sentence').text(mydata[cnt]);
     cnt++;
   }, 'text');
@@ -73,14 +76,14 @@ function load_corpus(lang) {
 function nextSentence() {
   cnt++;
   $('#sentence').text(this.mydata[cnt]);
-  localStorage.setItem(zabancntstr, cnt);
+  localStorage.setItem(this.lang+zabancntstr, cnt);
 }
 
 function previousSentence() {
   if(cnt <= 1) return;
   cnt--;
   $('#sentence').text(this.mydata[cnt]);
-  localStorage.setItem(zabancntstr, cnt);
+  localStorage.setItem(this.lang+zabancntstr, cnt);
 }
 
 function tagSentence() {
@@ -89,11 +92,11 @@ function tagSentence() {
 
 function drop() {
   text = $( "#langselect option:selected" ).text();
-  load_corpus(text+".csv");
+  load_corpus(text);
 }
 
 
-load_corpus("German_Germany.csv");
+load_corpus("German_Germany");
 </script>
 </body>
 </html>
