@@ -40,7 +40,7 @@
   var zabancntstr = 'zabancnt';
   var cnt;
   if(localStorage[zabancntstr]) cnt = localStorage.getItem(zabancntstr);
-  else cnt = 0;
+  else cnt = ;
   var mydata;
   $.get('data.csv', function(data) {
     mydata = data.split('\n');
@@ -49,13 +49,14 @@
   }, 'text');
 
   function nextSentence() {
+    console.log('next');
     cnt++;
     $('#sentence').text(mydata[cnt]);
     localStorage.setItem(zabancntstr, cnt);
   }
 
   function previousSentence() {
-    if(cnt <= 0) return;
+    if(cnt <= 1) return;
     cnt--;
     $('#sentence').text(mydata[cnt]);
     localStorage.setItem(zabancntstr, cnt);
