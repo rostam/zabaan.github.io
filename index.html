@@ -10,7 +10,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
-  @font-face { font-family: BNazanin; src: url('bnazanin.ttf'); }
+  @font-face {
+    font-family: OldStandardTT; src: url('./fonts/OldStandard-Regular.ttf');
+    font-family: BNazanin; src: url('./fonts/bnazanin.ttf');
+    font-family: Amiri; src: url('./fonts/Amiri-Regular.ttf');
+  }
     body {
       color: slategray;
       font-family: 'Old Standard TT';
@@ -87,9 +91,9 @@ this.lang = "";
 var cnt;
 function load_corpus(lang) {
   this.lang = lang;
-  $("#sentence").css("direction","ltr").css("font-family","Old Standard TT")
-  if(lang == "Persian") $("#sentence").css("direction","rtl").css("font-family","BNazanin")
-  
+  $("#sentence").css("direction","ltr").css("font-family","OldStandardTT")
+  if(lang == "Persian") $("#sentence").css("direction","rtl").css("font-family","Amiri")
+
   this.mydata = [];
   if(localStorage[lang+zabancntstr]) cnt = localStorage.getItem(lang+zabancntstr);
   else cnt = 1;
