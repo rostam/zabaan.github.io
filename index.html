@@ -4,10 +4,13 @@
   <title>Zabaan</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- @font-face { font-family: Delicious; font-weight: bold; src: url('Delicious-Bold.otf');} -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
+  @font-face { font-family: BNazanin; src: url('bnazanin.ttf'); }
+
     body {
       color: slategray;
       font-family: 'Baskerville';
@@ -34,6 +37,7 @@
       font-size: calc(4vw + 4vh + 2vmin);
       font-family: "Amiri", "GeezaPro";
     }
+
 
   </style>
 </head>
@@ -84,7 +88,7 @@ var cnt;
 function load_corpus(lang) {
   this.lang = lang;
   $("#sentence").css("direction","ltr")
-  if(lang == "Persian") $("#sentence").css("direction","rtl")
+  if(lang == "Persian") $("#sentence").css("direction","rtl").css("font-family","BNazanin")
   this.mydata = [];
   if(localStorage[lang+zabancntstr]) cnt = localStorage.getItem(lang+zabancntstr);
   else cnt = 1;
