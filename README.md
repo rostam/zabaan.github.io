@@ -7,3 +7,5 @@ Practice languages with sentences
 - Arabic: <https://www.amirifont.org/>
 - Persian: <https://alefba.us/free-arabic-persian-farsi-urdu-kurdish-fonts/>
 
+# Data
+Leipzig Corpora Collection (<https://corpora.uni-leipzig.de/>)
